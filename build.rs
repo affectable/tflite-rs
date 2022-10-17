@@ -97,7 +97,9 @@ fn prepare_tensorflow_library() {
 
             // Use cargo's cross-compilation information while building tensorflow
             // Now that tensorflow has an aarch64_makefile.inc use theirs
-            let target = if &arch == "aarch64" { &arch } else { &os };
+            // TensorFlow's aarch64 make target assumes a Linux cross-toolchain.
+            // Native Apple Silicon builds must use the macOS target instead.
+            let target = if arch == "aarch64" && os != "macos" { &arch } else { &os };
 
             #[cfg(feature = "debug_tflite")]
             {
