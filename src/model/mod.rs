@@ -376,7 +376,7 @@ mod tests {
         model.version = 2;
         model.operator_codes.erase(4);
         model.buffers.erase(22);
-        model.buffers.erase(23);
+        model.buffers.erase(22);
         model.description.assign(&CString::new("flatbuffer").unwrap());
 
         {
