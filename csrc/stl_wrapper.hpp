@@ -4,6 +4,10 @@
 
 namespace rust {
 
+struct alignas(alignof(std::string)) string {
+  uint8_t payload[sizeof(std::string)];
+};
+
 struct alignas(alignof(std::vector<std::unique_ptr<void>>)) dummy_vector {
   uint8_t payload[sizeof(std::vector<std::unique_ptr<void>>)];
 };
